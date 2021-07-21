@@ -1,0 +1,21 @@
+h1,h2,a,p,h4,h3,button{
+    font-family: Montserrat;
+    color: whitesmoke;
+}
+#sb:link, #sb:visited {
+  background-color: #FF5964;
+  color: white;
+  padding: 8px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 15px;
+  font-family: Montserrat;
+  font-size: small;
+}
+
+#sb:hover, #sb:active {
+  background-color: red;}
+body{
+    background-color:#5286F3;
+}

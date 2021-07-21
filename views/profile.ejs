@@ -1,0 +1,83 @@
+<html>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>profile</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"> 
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../pug/style.css">  
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="/">Home Page</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li><a href="/list">Users List</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/profile"><span class="glyphicon glyphicon-user"></span> <%=uname %></a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+              </ul>
+            </div>
+          </nav> 
+          <div class="container">
+            <div style="border-radius:50%;">
+              <img src="data:image/<%=image.img.contentType%>;base64,<%=image.img.data.toString('base64')%>" width="300" height="300" align="right" style="border-radius: 50%;box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5)">
+            </div>
+            <h1 id="un"><%=uname%></h1><br>
+            <h1><%=email%></h1><br>
+            <br>
+            <form action="/profile" method="POST" enctype="multipart/form-data">
+               <div>
+                    <h3 for="image">Update Profile Picture</h3>
+                    <input type="file" id="image"
+                           name="image" value="">
+                </div>
+                <div>
+                  <br>
+                    <button class="btn-danger" type="submit">Submit</button>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <hr>
+            </form>
+			<span><button class="py-3 btn btn-danger btn-xl" id="del">Delete Account Permanently</button></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span><button class="py-3 btn btn-danger btn-xl" id="tmp">Delete Account Temporarily</button></span>
+            <script>$(document).ready(function() {
+            $(".dropdown-toggle").dropdown();
+            $("#del").click(function(){
+			  var un = $("#un").html();
+			  
+              $.ajax({
+                    url: "/profile/"+un,
+        			type: "DELETE",
+        		error: function (xhr, status, error) {
+        			alert("Account Deleted!!");
+					window.location.replace("/");
+        			}
+        		});
+            });
+		   $("#tmp").click(function(){
+				var un = $("#un").html();
+
+				$.ajax({
+                    url: "/profile/"+un,
+        			type: "PUT",
+        		error: function (xhr, status, error) {
+        			alert("Re-Login to reactivate the account");
+					window.location.replace("/");
+        			}
+        		});
+
+		   })
+        });</script>
+    </body>
+</html>

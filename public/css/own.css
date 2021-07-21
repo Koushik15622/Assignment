@@ -1,0 +1,15 @@
+#g:link, #g:visited {
+    background-color: #FF5964;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 15px;
+    font-family: Montserrat;
+    font-size: small;
+  }
+  
+  #g:hover, #g:active {
+    background-color: red;
+  }
