@@ -13,3 +13,7 @@
   #g:hover, #g:active {
     background-color: red;
   }
+  .toast-error { 
+    background-color: #FF5964;
+    opacity: 500 !important;
+} 

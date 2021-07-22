@@ -51,33 +51,6 @@
 			<span><button class="py-3 btn btn-danger btn-xl" id="del">Delete Account Permanently</button></span>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span><button class="py-3 btn btn-danger btn-xl" id="tmp">Delete Account Temporarily</button></span>
-            <script>$(document).ready(function() {
-            $(".dropdown-toggle").dropdown();
-            $("#del").click(function(){
-			  var un = $("#un").html();
-			  
-              $.ajax({
-                    url: "/profile/"+un,
-        			type: "DELETE",
-        		error: function (xhr, status, error) {
-        			alert("Account Deleted!!");
-					window.location.replace("/");
-        			}
-        		});
-            });
-		   $("#tmp").click(function(){
-				var un = $("#un").html();
-
-				$.ajax({
-                    url: "/profile/"+un,
-        			type: "PUT",
-        		error: function (xhr, status, error) {
-        			alert("Re-Login to reactivate the account");
-					window.location.replace("/");
-        			}
-        		});
-
-		   })
-        });</script>
+            <script src="./pug/profile.js"></script>
     </body>
 </html>

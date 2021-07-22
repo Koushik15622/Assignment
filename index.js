@@ -11,7 +11,7 @@ var multer = require("multer");
 var User = require('./backend/model');
 var app = express();
 
-//app.use(morgan('dev'));
+app.use(morgan('dev'));
 app.use(express.static(__dirname+"/public"));
 app.use(bp.urlencoded({extended:true}));
 app.set('view engine','ejs');
@@ -51,9 +51,9 @@ app.get("/",function(req,res){
     res.sendFile(__dirname+"/public/html/home.html");
 })
 
-app.get("/profile",sessionChecker,function(req,res){
-    User.findOne({email:req.session.user.email},(err,img)=>{
-      res.render("profile",{uname:req.session.user.username,email:req.session.user.email,image:img});
+app.get("/profile",sessionChecker,async function(req,res){
+    await User.findOne({email:req.session.user.email},(err,data)=>{
+      res.render("profile",{uname:req.session.user.username,email:req.session.user.email,image:data});
     })
 });
 
@@ -115,6 +115,7 @@ app.post("/login",async function(req,res){
 });
 
 app.post("/register",function(req,res){
+    //console.log(req.body);
     var user = new User({
         username: req.body.username,
         email: req.body.email,
@@ -127,10 +128,10 @@ app.post("/register",function(req,res){
       
       user.save((err, docs) => {
         if (err) {
+          console.log(err);
           res.redirect("/register");
         } else {
           docs.img = null;
-            console.log(docs)
           req.session.user = docs;
           req.session.save();
           res.redirect("/profile");
@@ -153,7 +154,7 @@ app.post('/profile',sessionChecker, upload.single('image'), async(req, res, next
           res.redirect('/profile');
       }
   });
-  console.log(req.session.user);
+  //console.log(req.session.user);
 });
 
 app.delete("/profile/:id",async function(req,res){
