@@ -1,11 +1,33 @@
 # multi-users-api
 
-STEP 1: Install the dependencies by running the following command.
-        # IMPORTANT ====> npm install express express-session dotenv mongoose connect-mongo body-parser cookie-parser ejs multer path fs bcrypt morgan --save
+Simple user management system using MongoDB
 
-STEP 2: (Easier way of creating an environment variable) After installing the above packages, create a .env file in the project folder i.e., in the same folder having package.json
+## Installation
 
-STEP 3: IMPORTANT ====> Create an environment variable (following STEP 2 or through control panel) with KEY as MCS and VALUE of your Mongo-connection-string.
+Clone this Repository and move to the project folder by using the following commands.
 
-STEP 4: Start the server with the command ==> npm start
-        
+```bash
+git clone https://github.com/Koushik15622/multi-users-api.git
+
+cd multi-users-api
+```
+Install the dependencies using the following command
+
+```bash
+npm install bcrypt body-parser connect-mongo cookie-parser dotenv ejs express express-session fs mongoose morgan multer path --save
+```
+
+## Usage
+create a .env file in the project folder and add your mongo-connect-string with the name MCS.
+
+After setting up the valid connection string in the .env file run the following command to start the server.
+
+```bash
+npm start
+```
+
+## Contributors
+Koushik PLN (https://koushik-pln.herokuapp.com/)
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
