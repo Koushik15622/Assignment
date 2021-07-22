@@ -27,7 +27,7 @@ npm start
 ```
 
 ## Contributors
-[Koushik PLN](https://koushik-pln.herokuapp.com/)
+[Koushik PLN](https://koushikpln.herokuapp.com/)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
